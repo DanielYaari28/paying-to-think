@@ -1,0 +1,66 @@
+======================================================================
+1. DESCRIPTIVE STATISTICS (95% t-based CIs, pre-registered)
+======================================================================
+      low (budget  488): accuracy 0.594 [0.543, 0.646] | mean tokens 469 [462, 477] | no extractable number: 2
+   medium (budget  890): accuracy 0.737 [0.691, 0.783] | mean tokens 703 [678, 728] | no extractable number: 1
+unlimited (budget 4096): accuracy 0.837 [0.798, 0.876] | mean tokens 1,345 [1,231, 1,460] | no extractable number: 0
+
+======================================================================
+2. MAIN TEST: chi-square of independence, 3x2 table (pre-registered)
+======================================================================
+           incorrect  correct
+arm                          
+low              142      208
+medium            92      258
+unlimited         57      293
+
+Expected counts under H0:
+           incorrect  correct
+arm                          
+low             97.0    253.0
+medium          97.0    253.0
+unlimited       97.0    253.0
+Assumption check: smallest expected count = 97.0 (>= 5, chi-square is valid)
+Assumption check: independence holds by design (each problem used in exactly one arm).
+
+chi2(2, N = 1050) = 52.06, p = 4.97e-12
+Decision at alpha = 0.05: REJECT H0
+[Exploratory E3] Cramer's V = 0.223
+
+======================================================================
+3. POST HOC: pairwise 2x2 chi-square, Bonferroni alpha = 0.0167 (pre-registered)
+======================================================================
+   low vs medium   : 0.594 -> 0.737 | diff = +0.143 [+0.074, +0.212] | d = 0.31 | chi2(1) = 16.05, p = 6.17e-05 | significant
+   low vs unlimited: 0.594 -> 0.837 | diff = +0.243 [+0.178, +0.307] | d = 0.56 | chi2(1) = 50.73, p = 1.06e-12 | significant
+medium vs unlimited: 0.737 -> 0.837 | diff = +0.100 [+0.040, +0.160] | d = 0.25 | chi2(1) = 10.44, p = 1.23e-03 | significant
+Cohen's d guide: 0.2 small, 0.5 medium, 0.8 large.
+
+======================================================================
+E1. EXPLORATORY: unlimited arm, hit the 4,096 cap vs finished on its own
+======================================================================
+                       n  correct  accuracy
+hit_budget_thinking                        
+finished on its own  325      283     0.871
+hit the cap           25       10     0.400
+Fisher's exact test (small cell counts): p = 2.49e-07
+Interpretation: runs that hit the cap seem to be stuck rather than thinking productively.
+
+======================================================================
+E2. EXPLORATORY SENSITIVITY: runs whose ANSWER was cut off by the budget
+======================================================================
+            n  accuracy
+arm                    
+low        44     0.091
+medium     45     0.156
+unlimited   2     0.000
+These runs finished thinking but the budget ended mid-answer, so budget forcing
+never triggered and the extracted number is often not the model's answer.
+
+as pre-registered: n = 1050 | accuracy low 0.594, medium 0.737, unlimited 0.837
+   omnibus chi2(2) = 52.06, p = 4.97e-12 | low vs medium p = 6.17e-05, low vs unlimited p = 1.06e-12, medium vs unlimited p = 1.23e-03
+
+flagged runs counted as correct (best case for H0): n = 1050 | accuracy low 0.709, medium 0.846, unlimited 0.843
+   omnibus chi2(2) = 26.77, p = 1.54e-06 | low vs medium p = 1.30e-05, low vs unlimited p = 2.05e-05, medium vs unlimited p = 9.17e-01
+
+flagged runs dropped: n = 959 | accuracy low 0.667, medium 0.823, unlimited 0.842
+   omnibus chi2(2) = 33.96, p = 4.21e-08 | low vs medium p = 9.43e-06, low vs unlimited p = 1.63e-07, medium vs unlimited p = 5.16e-01

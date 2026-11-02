@@ -1,0 +1,2 @@
+test,chi2,df,p_value,min_expected,cramers_v,decision
+chi-square of independence (3x2),52.05574344973717,2,4.968656049971781e-12,97.0,0.22265870412709945,REJECT H0
