@@ -1,11 +1,11 @@
-# Analysis (CPU only; enough to reproduce every number and figure in the report)
+# Analysis (CPU only; reproduces every number and figure in the report)
 pandas>=2.0
 numpy>=1.24
 scipy>=1.10
 matplotlib>=3.7
+statsmodels>=0.14
 
 # Experiment + pilot (need an NVIDIA GPU, e.g. Google Colab T4)
 # vllm
 # transformers
 # datasets
-# statsmodels   # power analysis in scripts/pilot/pilot_part2.py
