@@ -4,7 +4,7 @@ Paying to Think: POWER ANALYSIS (sample-size justification)
 Reproduces the pre-registered power analysis from the pilot accuracies.
 CPU only; runs in about a second.
 
-Method (course notes, Chapter 4, "Method 1: Pilot Study"):
+Method:
     - Treat correct/incorrect as a 0/1 outcome.
     - Cohen's d for two accuracies p1, p2 with pooled SD:
           d = |p1 - p2| / sqrt((p1(1 - p1) + p2(1 - p2)) / 2)
